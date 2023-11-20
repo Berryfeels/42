@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 17:45:37 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/17 18:01:14 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/11/20 19:16:52 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	isalnum(int argument)
 {
-	if ((47 < arg && 58 > arg) || (64 < a && a < 91) || (96 < a && a < 123))
+	if ((47 < argument && 58 > argument) || (64 < a && a < 91) || (96 < a && a < 123))
 		return (1);
 	else
 		return (0);
