@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 17:45:37 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/27 19:15:29 by stdi-pum         ###   ########.fr       */
+/*   Created: 2023/11/23 18:36:59 by stdi-pum          #+#    #+#             */
+/*   Updated: 2023/11/23 19:00:06 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	isalnum(int c)
+char	*ft_strchr(const char *s, int c)
 {
-	if ((47 < c && 58 > c) || (64 < c && c < 91))
-		return (1);
-	if (96 < c && c < 123)
-		return (1);
-	else
-		return (0);
+	while (*s != '\0')
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s ++;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (NULL);
 }

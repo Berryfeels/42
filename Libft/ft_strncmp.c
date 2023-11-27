@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 17:45:37 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/27 19:15:29 by stdi-pum         ###   ########.fr       */
+/*   Created: 2023/11/23 19:46:16 by stdi-pum          #+#    #+#             */
+/*   Updated: 2023/11/23 21:12:03 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	isalnum(int c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	if ((47 < c && 58 > c) || (64 < c && c < 91))
-		return (1);
-	if (96 < c && c < 123)
-		return (1);
-	else
-		return (0);
+	unsigned int	i;
+
+	i = 0;
+	while ((s1[i] != '\0' || s2[i] != '\0') && i < n)
+	{
+		if (s1[i] > s2[i])
+		{
+			return (1);
+		}
+		else if (s1[i] < s2[i])
+		{
+			return (-1);
+		}
+		i++;
+	}
+	return (0);
 }

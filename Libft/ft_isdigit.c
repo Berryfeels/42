@@ -6,15 +6,15 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 17:29:38 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/17 17:38:01 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/11/24 20:55:57 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int arg)
+int	ft_isdigit(int c)
 {
-	if (47 < arg && 58 > arg)
+	if (c > 47 && c < 58)
 		return (1);
 	else 
 		return (0);

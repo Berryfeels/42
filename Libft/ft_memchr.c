@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 17:45:37 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/27 19:15:29 by stdi-pum         ###   ########.fr       */
+/*   Created: 2023/11/23 19:53:43 by stdi-pum          #+#    #+#             */
+/*   Updated: 2023/11/23 21:07:57 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stddef.h>
 
-int	isalnum(int c)
+void	*memchr(const void *s, int c, size_t n)
 {
-	if ((47 < c && 58 > c) || (64 < c && c < 91))
-		return (1);
-	if (96 < c && c < 123)
-		return (1);
-	else
-		return (0);
+	size_t			i;
+	unsigned char	*ss;
+
+	ss = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		if (ss[i] == (unsigned char) c)
+			return ((void *) &ss[i]);
+		i ++;
+	}
+	return (NULL);
 }

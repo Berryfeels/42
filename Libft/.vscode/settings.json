@@ -1,0 +1,8 @@
+{
+    "editor.defaultFormatter": "ms-vscode.cpptools",
+    "editor.detectIndentation": true,
+	"editor.insertSpaces": false,
+	"editor.renderWhitespace": "all",
+	"files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": true
+}
