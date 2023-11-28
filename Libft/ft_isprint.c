@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 18:12:12 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/17 18:18:43 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:43:50 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ int	ft_isprint(int arg)
 {
 	if ((31 < arg && 127 > arg))
 		return (1);
-	else 
+	else
 		return (0);
 }
