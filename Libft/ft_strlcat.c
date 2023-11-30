@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:04:30 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/28 19:44:03 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:45:46 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,34 +15,32 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	unsigned int	sdst;
-	unsigned int	ssrc;
-	int				strsum;
+	size_t	ld;
+	size_t	ls;
+	char	*getlen;
 
-	sdst = 0;
-	ssrc = 0;
-	while (dst[sdst] != '\0')
-		sdst++;
-	while (src[ssrc] != '\0')
-		ssrc++;
-	strsum = sdst + ssrc;
-	ssrc = 0;
-	while (src[ssrc] != '\0' && (sdst + ssrc) < (dstsize - 1))
+	getlen = (char *) src;
+	ls = ft_strlen(getlen);
+	ld = ft_strlen(dst);
+	while (dst[ld] != '\0')
+		ld++;
+	while (src[ls] != '\0' && ld + ls < dstsize - 1)
 	{
-		dst[sdst + ssrc] = src[ssrc];
-		ssrc++;
+		dst[ld + ls] = src[ls];
+		ls++;
 	}
-	dst[sdst + ssrc] = '\0';
-	return (strsum);
+	dst[ld + ls] = '\0';
+	while (src[ls] != '\0')
+		ls++;
+	return (ld + ls);
 }
-/*
+
 #include <stdio.h>
 int main() {
-    char dst[] = "Hel";
-    char src[] = "lo bitch!";
-    unsigned int dstsize = 15;
+    char dst[10];
+    char src[] = "lorem ipsum dolor sit amet";
+    unsigned int dstsize = 2;
 
-    // Call your custom strlcat function
     unsigned int result = ft_strlcat(dst, src, dstsize);
 
     printf("Concatenated string: %s\n", dst);
@@ -50,4 +48,3 @@ int main() {
 
     return 0;
 }
-*/

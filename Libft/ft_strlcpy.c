@@ -6,42 +6,29 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 19:18:56 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/28 19:44:03 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/11/29 19:57:09 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stddef.h>
 
-size_t	strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
-	size_t	j;
+	int		l_src;
 
+	l_src = 0;
+	while (src[l_src] != '\0')
+		l_src ++;
 	i = 0;
-	j = 0;
-	while (src[i] != '\0')
-		i++;
-	while (src[j] != '\0' || j < (dstsize - 1))
+	if (dstsize == 0)
+		return (l_src);
+	while (i < (dstsize - 1) && src[i] != '\0')
 	{
-		dst[j] = src[j];
-		j++;
+		dst[i] = src[i];
+		i++;
 	}
-	dst[j] = '\0';
-	return (i - 1);
+	if (i < dstsize)
+		dst[i] = '\0';
+	return (l_src);
 }
-
-// #include <stdio.h>
-// int main() {
-//     char destination[] = "cacca";
-//     const char source[] = "Hello, World!";
-// 	unsigned int dstsize = 2;
-//     // Call your custom strlcpy function
-//     size_t result = strlcpy(destination, source, dstsize);
-
-//     // Print the copied string and the return value
-//     printf("Copied string: %s\n", destination);
-//     printf("Total length: %lu\n", result);
-
-//     return 0;
-// }

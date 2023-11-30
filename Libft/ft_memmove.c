@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 14:26:16 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/28 20:48:19 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:33:45 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,25 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	char	*dstcpy;
-	char	*srccpy;
+	char	*c_src;
+	char	*c_dst;
 	size_t	i;
 
 	if (!dst && !src)
 		return (NULL);
-	dstcpy = (char *) dst;
-	srccpy = (char *) src;
+	c_src = (char *) src;
+	c_dst = (char *) dst;
 	i = 0;
-	if (dstcpy > srccpy)
-	{
-		while (len -- > 0)
-			dstcpy[len] = srccpy[len];
-	}
+	if (c_dst > c_src)
+		while (len-- > 0)
+			c_dst[len] = c_src[len];
 	else
 	{
-		while (i++ < len)
-			dstcpy[i] = srccpy[i];
+		while (i < len)
+		{
+			c_dst[i] = c_src[i];
+			i ++;
+		}
 	}
 	return (dst);
 }
-
-// #include <stdio.h>
-// #include <stddef.h>
-
-// int main(void)
-// {
-// 	char source[] = "Hello, cald!";
-// 	char destination[] = "Hello Cacca belle appiccicosa!";
-
-// 	// Using ft_memmove to copy from source to destination
-// 	ft_memmove(destination, source, 13);
-
-// 	// Printing the content of destination
-// 	printf("Destination after ft_memmove: %s\n", destination);
-
-// 	return 0;
-// }

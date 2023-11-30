@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 18:33:37 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/30 20:32:29 by stdi-pum         ###   ########.fr       */
+/*   Created: 2023/11/30 19:19:27 by stdi-pum          #+#    #+#             */
+/*   Updated: 2023/11/30 20:28:40 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	tolower(int c)
+char	*ft_strdup(const char *s1)
 {
-	if (c >= 65 && c <= 90)
-		c += 32;
-	return (c);
+	int		ls;
+	char	*ptr;
+	char	*getlen;
+	int		i;
+
+	getlen = (char *) s1;
+	ls = ft_strlen (getlen);
+	ptr = (char *) malloc ((ls + 1) * sizeof(const char));
+	if (ptr == NULL)
+	{
+		errno = ENOMEM;
+		return (NULL);
+	}
+	i = 0;
+	while (i < ls)
+	{
+		ptr[i] = s1[i];
+		i ++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

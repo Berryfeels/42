@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 19:00:37 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/28 19:44:06 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/11/30 21:00:43 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	int		ls;
+	char	*getsize;
 
-	i = 0;
-	while (s[i] != '\0')
-		i++;
+	getsize = (char *)s;
+	ls = ft_strlen(getsize);
 	if (c == '\0')
-		return ((char *) &s[i]);
-	while (i > 0)
+		return ((char *) &s[ls + 1]);
+	while (ls >= 0)
 	{
-		if (s[i] == (char) c)
-			return ((char *) &s[i]);
-		i --;
+		if (s[ls] == (char) c)
+			return ((char *) &s[ls]);
+		ls --;
 	}
 	return (NULL);
 }

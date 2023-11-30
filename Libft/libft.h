@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:10:39 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/28 19:52:56 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:32:35 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 # define LIBFT_H
 
 # include <stddef.h>
+# include <stdlib.h>
+# include <errno.h>
 
+int		ft_tolower(int c);
+int		ft_toupper(int c);
 int		ft_isalpha(int a);
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
@@ -32,8 +36,9 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 int		ft_strlen(char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strrchr(const char *s, int c);
-int		ft_tolower(int c);
-int		ft_toupper(int c);
 int		ft_atoi(const char *str);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_strdup(const char *s1);
+
 #endif
