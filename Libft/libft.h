@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:10:39 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/30 20:32:35 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/12/02 16:56:15 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <errno.h>
 
+char	*ft_strdup(const char *s1);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
 int		ft_isalpha(int a);
@@ -39,6 +40,8 @@ char	*ft_strrchr(const char *s, int c);
 int		ft_atoi(const char *str);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 void	*ft_calloc(size_t count, size_t size);
-char	*ft_strdup(const char *s1);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strtrim(char const *s1, char const *set);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 17:04:30 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/30 18:45:46 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/12/02 15:51:22 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,17 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	return (ld + ls);
 }
 
-#include <stdio.h>
-int main() {
-    char dst[10];
-    char src[] = "lorem ipsum dolor sit amet";
-    unsigned int dstsize = 2;
+// #include <stdio.h>
+// int main() {
+//     char dst[] = "lalla";
+//     char src[] = "lorem ipsum dolor sit amet";
+// 	size_t dstsize = 10;
 
-    unsigned int result = ft_strlcat(dst, src, dstsize);
+//   	size_t result;
+// 	result = ft_strlcat(dst, src, dstsize);
 
-    printf("Concatenated string: %s\n", dst);
-    printf("Total length: %u\n", result);
+//     printf("Concatenated string: %s\n", dst);
+//     printf("Total length: %zu\n", result);
 
-    return 0;
-}
+//     return 0;
+// }
