@@ -6,12 +6,11 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:55:48 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/12/02 18:07:10 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:09:23 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
+# include "libft.h"
 // Parameters
 // s1: The string to be trimmed.
 // set: The reference set of characters to trim.
@@ -28,8 +27,7 @@
 // b from the start and the end of s1, keeping the stuff in the middle of s1.
 // the result is "My name is Simone"
 
-//get length s1;
-	//loop while iterate through s1 from Start (s1[0])
+//get length s1;# include "libft.h"ugh s1 from Start (s1[0])
 	//while (s1[i] == (set[y++]) && set[y] == '\0'))
 	//int start = 0; start ++;
 	//loop while iterate through s1 from End (s1[len--])
@@ -40,39 +38,54 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		start;
 	int		y;
 	int		i;
-	size_t	len;
 	char	*strim;
-	size_t	n;
+	char	*src;
 
-	start = 0;
-	y = 0;
+	if (s1 == NULL)
+		return (NULL);
+	src = (char *) s1;
 	i = 0;
 	while (s1[i] != '\0')
 	{
-		{
-			while (s1[i] == set[y] && set[y] != '\0')
-				y ++;
-		}
+		if (ft_strchr(set, s1[i]) == NULL)
+			break ;
 		i ++;
-		y = 0;
 	}
-	while (s1[i] != '\0')
-		i ++;
-	while (s1[i] > 0)
+	y = ft_strlen (src);
+	while (y > 0)
 	{
-		{
-			while (s1[i] == set[y] && set[y] != '\0')
-				y ++;
-		}
-		i ++;
-		y = 0;
+		if (ft_strchr(set, s1[y]) == NULL)
+			break ;
+		y --;
 	}
-strim = (char *) malloc ((i - n) * sizeof(char const))
-if(strim == NULL)
-	return(NULL)
-*ft_memcpy(strim, s, (len - n));
-return (strim);
+	y += 1;
+	strim = (char *) malloc ((y - i + 1) * sizeof(char const));
+	if (strim == NULL)
+		return (NULL);
+	ft_strlcpy (strim, s1 + i, (y - i + 1));
+	return (strim);
 }
+// #include <stdio.h>
+
+// int main(void)
+// {
+// 	const char *s1 = "abababbabbTrim this string!aabbaabbabab";
+// 	const char *set = "ab";
+// 	char *trimmed = ft_strtrim(s1, set);
+
+// 	if (trimmed != NULL)
+// 	{
+// 		printf("Original: '%s'\n", s1);
+// 		printf("Trimmed : '%s'\n", trimmed);
+
+// 		free(trimmed); // Don't forget to free the allocated memory
+// 	}
+// 	else
+// 	{
+// 		printf("Memory allocation failed.\n");
+// 	}
+
+// 	return 0;
+// }

@@ -6,13 +6,13 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:26:47 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/11/28 19:44:07 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2023/12/03 21:12:43 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	toupper(int c)
+int	ft_toupper(int c)
 {
 	if (c >= 97 && c <= 122)
 		c -= 32;

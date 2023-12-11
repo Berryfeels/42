@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 18:33:37 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/12/03 21:12:54 by stdi-pum         ###   ########.fr       */
+/*   Created: 2023/12/11 18:06:30 by stdi-pum          #+#    #+#             */
+/*   Updated: 2023/12/11 18:18:23 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	if (c >= 65 && c <= 90)
-		c += 32;
-	return (c);
+	if (!(lst || del))
+		return (NULL);
+	del (lst -> content);
+	free(lst);
 }

@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 18:33:37 by stdi-pum          #+#    #+#             */
-/*   Updated: 2023/12/03 21:12:54 by stdi-pum         ###   ########.fr       */
+/*   Created: 2023/12/11 18:51:01 by stdi-pum          #+#    #+#             */
+/*   Updated: 2023/12/11 19:13:54 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_tolower(int c)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (c >= 65 && c <= 90)
-		c += 32;
-	return (c);
+	if (lst == NULL)
+		return (NULL);
+	while (lst)
+	{
+		f (lst -> content);
+		lst = lst -> next;
+	}
 }
