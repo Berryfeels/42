@@ -6,11 +6,10 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:11:05 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/02/02 16:41:23 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/02/08 21:13:12 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "libprintf.h"
 
 // Parameters
@@ -85,15 +84,3 @@ char	*ft_itoa(int n)
 	ft_writestring(str, number, count, sign);
 	return (str);
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	int	n = 0;
-// 	char	*num;
-
-// 	num = ft_itoa (n);
-// 	printf("the number is:%s", num);
-// 	return (0);
-// }

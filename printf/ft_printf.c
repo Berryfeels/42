@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 13:23:42 by stefanodipu       #+#    #+#             */
-/*   Updated: 2024/02/02 19:25:16 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/02/08 21:13:11 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,19 @@
 int ft_print_char(char c, int *count)
 {
     write(1, &c, 1); 
-    return (*++count);
+   //printf("Value of COUNT is now: %p\n", count);
+    return (*count)++;
 }
 
 int ft_print_string(char *str, int *count)
 {
+    if (!str)
+	{
+		str = "(null)";
+	}
     while (*str)
     {
-        ft_print_char ((int)*str, count);
+        ft_print_char (*str, count);
         str++;
     }
     return (*count);
@@ -48,7 +53,6 @@ int ft_print_hexa(long n, char specifier, int *count)//I cast to long as, wantin
 {
     char *symbols;
 
-    count = 0;
     if ( specifier == 'x')
         symbols = "0123456789abcdef";
     else if (specifier == 'X')
@@ -109,7 +113,7 @@ char	*ft_itoa(int n)
 	if (number < 0)
 		tmp = number * -1;
 	else
-		tmp = number;
+	tmp = number;
 	sign = 0;
 	if (number < 0)
 		sign = 1;
@@ -139,19 +143,16 @@ int ft_print_number(int n, int *count)
     char *str = ft_itoa(n);
     if (!(str))
         return (-1);
-    ft_print_char(*str, count);
+    ft_print_string(str, count);
     free (str);
     return (*count);
 }
 
 int ft_print_unsigned(unsigned int n, int *count)
 {
-    char *str = ft_itoa(n);
-    if (!(str))
-        return (-1);
-    *count = ft_strlen(*str);
-    ft_print_char(*str, count);
-    free (str);
+    if (n >= 10)
+		ft_print_unsigned(n / 10, count);
+	ft_print_char(n % 10 + '0', count);
     return (*count);
 }
 
@@ -169,9 +170,9 @@ int ft_print_format(const char specifier, va_list ap, int *count)
         ft_print_hexa((long)(va_arg (ap, void *)), 'x', count);
     }
     else if (specifier == 'd' || specifier == 'i')//digit int
-        ft_print_number((va_arg (ap, int)), count);//long casting explained at the function. I can use this function to print both digits and hexadecimals
+        ft_print_number((va_arg (ap, int)), count);
     else if (specifier == 'u')// %u Prints an unsigned decimal (base 10) number.
-        ft_print_unsigned((va_arg (ap, unsigned int)), count);
+         ft_print_unsigned((va_arg (ap, unsigned int)), count);
     else if (specifier == 'x' || specifier == 'X')//digit hexadecimal lowercase and UPPERCASE
         ft_print_hexa((va_arg (ap, unsigned int)), specifier, count);// 10 and 16 are the base system, unsigned int because 
                                                                     //hexadecimal representation never show minus. (having a 1 for example, all bits of the int are on :8 bits, the hexa  for 1 is ffffffff, which is the same as for -1)
@@ -189,14 +190,16 @@ int ft_printf(const char *format, ...)
 
     count = 0;
     va_start(ap, format);
+    if (!format)
+        return(-1);
     while (*format)
     {
         if (*format == '%')
-            count += ft_print_format(*++format, ap, &count); // unary operator '++'has precedence (from right to left)
+            ft_print_format(*++format, ap, &count); // unary operator '++'has precedence (from right to left)
         else if (*format == '\0')
             return (-1);
         else
-            count += write (1, format, 1);
+            ft_print_char (*format, &count);
         
         ++format;
     }
@@ -208,33 +211,28 @@ int main (void)
 {
     int count;
     void *ptr;
+    
 
     count = ft_printf("%d\n",900);
     ft_printf("The number of char printed is %d\n",count);
+    count = printf("%d\n", 900);
+    printf("The number of char printed is %d\n",count);
 
-    // ft_printf("Hello %s\n", "John I love youza");
-    // printf("Hello %s\n", "John I love youza");
+    count = ft_printf("Hello %s\n", "John I love youza");
+    ft_printf("The count is %d\n", count);
 
-    // count = ft_printf ("The number is %d\n ", 42);
-    // ft_printf("The chars printed are %d\n", count);
+    ft_printf ("The number printed is (%%x) %x\n", -1);
+    printf("The number printed is (%%X) %X\n", -1);
+    ft_printf("The pointer of count is at the address: %p\n", ptr);
+    printf("The pointer of count is at the address: %p\n", ptr);
 
-    // ft_printf ("The chars printed are %%x%x\n", count);
-    // printf("The chars printed are %%X%X\n", count);
+    ft_printf ("The number is %%i: %i\n", (2147483649));
+    printf("The number is %%i: %i\n", (2147483647));
 
-    // ft_printf ("The chars printed are %%x %x\n", '?');
-    // printf("The chars printed are %%X%X\n", '?');
-
-    // ft_printf ("The number is %%i%i\n", (2147483648));
-    // printf("The number is %%i%i\n", (2147483647));
-
-    // ft_printf ("The number is %%u%u, count is:%d\n", (INT_MIN), count);
-    // printf("The number is %%u%u, count is:%d\n", (INT_MIN), count);
-
-    // ft_printf ("The number is %%X%X\n", (INT_MAX));
-    // printf("The number is %%X%X\n", (INT_MAX));
-
-    // printf("the count %%i%i\n", count);
-    // ft_printf ("the count %%i%i\n", count);
+    count = ft_printf("%u\n", INT_MIN); 
+    ft_printf ("The number is %%u %u, count is:%d\n", (INT_MIN), count);
+    count = printf("%u\n", INT_MIN); 
+    printf("The number is %%u %u, count is:%d\n", (INT_MIN), count);
 
     return (0);
 }
