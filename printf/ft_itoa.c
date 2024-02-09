@@ -6,25 +6,11 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:11:05 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/02/09 21:27:05 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/02/09 22:01:36 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-// Parameters
-// n: the integer to convert.
-// Return value
-// The string representing the integer.
-// NULL if the allocation fails.
-// External functs.
-// malloc
-// Description
-// Allocates (with malloc(3)) and returns a string
-// representing the integer received as an argument.
-// Negative numbers must be handled.
-
-// take a number and tranform it in a string char.
 
 static char	*ft_writestring(char *str, long int n, int count, int sign)
 {

@@ -6,13 +6,14 @@
 #    By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/30 20:11:18 by stdi-pum          #+#    #+#              #
-#    Updated: 2024/02/09 17:52:45 by stdi-pum         ###   ########.fr        #
+#    Updated: 2024/02/09 22:06:23 by stdi-pum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= ft_itoa.c\
 			ft_printf.c\
-			print_functions.c
+			print_functions.c\
+			print_functions2.c
 OBJS			= $(SRCS:.c=.o)
 
 CC				= cc
