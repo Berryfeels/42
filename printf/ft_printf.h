@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libprintf.h                                        :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 14:41:56 by jadyar            #+#    #+#             */
-/*   Updated: 2024/02/08 21:13:10 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/02/09 21:26:22 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,13 @@
 # include <unistd.h>
 
 char	*ft_itoa(int n);
-int	ft_printf(const char *format, ...);
-int main (void);
-void	ft_print_char(char c, int *count);
-int	ft_print_string(char *str, int *count);
-int	ft_print_p(void *ptr, int *count);
-void	ft_print_d(int nb, int *count);
-void	ft_print_unsigned(unsigned int n, int *count);
+int ft_printf(const char *format, ...);
+int ft_print_format(const char specifier, va_list ap, int *count);
+int ft_print_unsigned(unsigned int n, int *count);
+int ft_print_number(int n, int *count);
 int ft_print_hexa(unsigned long n, char specifier, int *count);
-size_t	ft_strlen(const char *str);
-int	ft_printf(const char *format, ...);
-int	ft_print_number(int n, int *count);
+int ft_print_string(char *str, int *count);
+int ft_print_char(char c, int *count);
+int ft_print_pointer(void *ptr, int *count);
 
 #endif

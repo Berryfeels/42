@@ -6,11 +6,11 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:11:05 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/02/08 21:13:12 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/02/09 21:27:05 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libprintf.h"
+#include "ft_printf.h"
 
 // Parameters
 // n: the integer to convert.
@@ -26,7 +26,7 @@
 
 // take a number and tranform it in a string char.
 
-char	*ft_writestring(char *str, long int n, int count, int sign)
+static char	*ft_writestring(char *str, long int n, int count, int sign)
 {
 	str[count--] = '\0';
 	if (n == 0)
@@ -42,7 +42,7 @@ char	*ft_writestring(char *str, long int n, int count, int sign)
 	return (str);
 }
 
-int	ft_count(long int number)
+static int	ft_count(long int number)
 {
 	int	count;
 
