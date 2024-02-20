@@ -6,11 +6,36 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 14:14:36 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/02/18 15:49:05 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/02/20 19:54:23 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	char	*c_src;
+	char	*c_dst;
+	size_t	i;
+
+	if (!dst && !src)
+		return (NULL);
+	c_src = (char *) src;
+	c_dst = (char *) dst;
+	i = 0;
+	if (c_dst > c_src)
+		while (len-- > 0)
+			c_dst[len] = c_src[len];
+	else
+	{
+		while (i < len)
+		{
+			c_dst[i] = c_src[i];
+			i ++;
+		}
+	}
+	return (dst);
+}
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -53,26 +78,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		newstr[j++] = s2[i++];
 	newstr[j] = '\0';
 	return (newstr);
-}
-
-char	*ft_strdup(const char *s)
-{
-	int		ls;
-	char	*ptr;
-	int		i;
-
-	ls = ft_strlen ((char *)s);
-	ptr = (char *) malloc ((ls + 1) * sizeof(const char));
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < ls)
-	{
-		ptr[i] = s[i];
-		i ++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
 }
 
 size_t	ft_strlen(const char *str)

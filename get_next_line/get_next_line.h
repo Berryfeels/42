@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 14:10:30 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/02/18 15:51:09 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/02/20 18:20:30 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 100
+# define BUFFER_SIZE 3
 #endif
 
 # include <limits.h>
@@ -31,6 +31,8 @@ size_t	ft_strlen(const char *str);
 char *get_next_line(int fd);
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size);
+void	*ft_memmove(void *dst, const void *src, size_t len);
+char    *ft_get_line (char *buff);
 
 
 #endif

@@ -6,45 +6,93 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:14:24 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/02/18 19:15:40 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/02/20 21:29:24 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// char ft_line_after_newline (const char *, int fd)
+// char ft_string (int fd, char *string)
 // {
-//     create buffer;
-//     malloc
-//     print str in output;
+//     string = ft_calloc(BUFFER_SIZE, sizeof(char));
+//    if (!string)
+//        return (NULL);
+//     return (string);
+    
 // }
-// char ft_line_before_newline (const char *, int fd)
-// {
 
-//     create buffer;
-//     malloc
-//     print str in output;
-// }
+char *ft_get_line (int fd, char *buff)
+{
+    static char *rest = NULL;
+    char *line;
+    int i;
+    int j;
+    char *new_line;
+    //buff attach to rest = draft;
+    //from draft take out chars after '\n' and store it in rest.    
+    i = 0;
+    j = 0;
+    buff = ft_calloc(BUFFER_SIZE , sizeof(char));
+    if (!buff)
+        return (NULL);
+    while(buff)
+    {
+        if (*buff == '\n')
+        *new_line;
+        else 
+            read(fd, buff, BUFFER_SIZE);
+    }
+        
+    // char *draft = ft_strjoin(rest, buff);//attach buff to static char rest
+    // while (*draft)
+    // {
+    //     if (*draft == '\n')
+    //     {
+    //         new_line = (char*) draft;
+    //         i += 1;
+    //         while(draft[i])
+    //             {
+    //                 rest[j] = draft[i];
+    //             }
+            
+            
+    //     }
+    //     i++;
+    //     *draft++;
+    return (*new_line);   
+}
+
+
+       
+    
+
 
 char	*get_next_line(int fd)
 {
-	size_t	bytesread;
-	static char *string; // the resulting text file
+    static char *buff;
+   // char *draftline;
+    //static char *string;
+    size_t count;
+    char *str;
+
+    // the resulting text file
 	// safe error buffer and read
-	if (fd < 0 || /*BUFFER_SIZE <= 0 ||*/ read(fd, 0, 0) < 0)
-		return (NULL);
-	// while (str)
-	// {
-	//     // char ft_line_before_newline (const char *);
-	//     // char ft_line_after_newline (const char *);
-	// }
-    string = ft_calloc(5, sizeof(char));
-    if (!string)
+    if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
         return (NULL);
-	bytesread = read(fd, string, 4);
-    if (bytesread <= 0)
+    buff = ft_calloc(BUFFER_SIZE , sizeof(char));
+    if (!buff)
         return (NULL);
-	return (string);
+    count = 1;
+    while (count > 0)
+    {
+        count = read (fd, buff, BUFFER_SIZE);
+        str = ft_get_line(fd, buff);
+        if (count == 0)
+            return(free(buff), NULL);
+        return (str);
+    }
+    free(buff);
+    return (NULL);
 }
 
 #include <fcntl.h>
