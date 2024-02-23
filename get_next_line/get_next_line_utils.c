@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 14:14:36 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/02/20 19:54:23 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:34:01 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,55 @@ size_t	ft_strlen(const char *str)
 		i++;
 	}
 	return (i);
+}
+
+char ft_strcpy(char *str)
+{
+    char strcpy[0];
+    int i;
+
+    i = 0;
+    while (*str)
+    {
+        strcpy[i] = str[i];
+        i++; 
+    }
+    strcpy[i] = '\0';
+    return(*strcpy);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s != '\0')
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s ++;
+	}
+	if (*s == (char)c)
+		return ((char *)s);
+	return (NULL);
+}
+
+size_t	ft_strlcat(char *dst, const char *src, size_t size)
+{
+	size_t	ld;
+	size_t	ls;
+	char	*getlen;
+
+	getlen = (char *) src;
+	ls = ft_strlen(getlen);
+	ld = ft_strlen(dst);
+	if (ld >= size)
+		ld = size;
+	if (size == ld)
+		return (ls + ld);
+	if (size > (ls + ld))
+		ft_memcpy(dst + ld, src, ls + 1);
+	else
+	{
+		ft_memcpy(dst + ld, src, size - ld - 1);
+		dst[size - 1] = '\0';
+	}
+	return (ld + ls);
 }

@@ -5,35 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 14:10:30 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/02/22 19:34:10 by stdi-pum         ###   ########.fr       */
+/*   Created: 2022/10/29 18:29:15 by dsa-mora          #+#    #+#             */
+/*   Updated: 2024/02/23 13:13:54 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 3
-#endif
-
-# include <limits.h>
-# include <stdarg.h>
-# include <stddef.h>
-# include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <string.h>
+# include <fcntl.h>
 
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strdup(const char *s);
-size_t	ft_strlen(const char *str);
-char    *get_next_line(int fd);
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t nmemb, size_t size);
-void	*ft_memmove(void *dst, const void *src, size_t len);
-char    *ft_get_line (int fd, char *buff, int count);
-char	*ft_strchr(const char *s, int c);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 3
+# endif
 
+char	*ft_strjoin(char *s1, char *s2);
+char	*get_next_line(int fd);
 #endif

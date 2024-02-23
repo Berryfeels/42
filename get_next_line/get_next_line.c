@@ -6,70 +6,62 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:14:24 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/02/20 21:29:24 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/02/23 09:33:14 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// char ft_string (int fd, char *string)
-// {
-//     string = ft_calloc(BUFFER_SIZE, sizeof(char));
-//    if (!string)
-//        return (NULL);
-//     return (string);
-    
-// }
-
-char *ft_get_line (int fd, char *buff)
+char *split_strings(char *draft_line, char delimiter, char *after_newline)
 {
-    static char *rest = NULL;
-    char *line;
-    int i;
-    int j;
-    char *new_line;
-    //buff attach to rest = draft;
-    //from draft take out chars after '\n' and store it in rest.    
-    i = 0;
-    j = 0;
-    buff = ft_calloc(BUFFER_SIZE , sizeof(char));
-    if (!buff)
-        return (NULL);
-    while(buff)
-    {
-        if (*buff == '\n')
-        *new_line;
-        else 
-            read(fd, buff, BUFFER_SIZE);
-    }
-        
-    // char *draft = ft_strjoin(rest, buff);//attach buff to static char rest
-    // while (*draft)
-    // {
-    //     if (*draft == '\n')
-    //     {
-    //         new_line = (char*) draft;
-    //         i += 1;
-    //         while(draft[i])
-    //             {
-    //                 rest[j] = draft[i];
-    //             }
-            
-            
-    //     }
-    //     i++;
-    //     *draft++;
-    return (*new_line);   
+    char *delimiter_position;
+    char *final_line;
+    
+    delimiter_position = ft_strchr(draft_line, '\n');// Trova la posizione del delimitatore nella stringa di input
+        // Copia i dati nei buffer appena allocati
+        ft_strncpy(*before_newline, draft_line, delimiter_position - draft_line);
+        while 
+        before_newline[delimiter_position] = '\0';
+
+        strcpy(*after_newline, delimiter_position + 1); 
+
+        return(final_line);
 }
 
+ 
+char *ft_get_line (int fd, char *buff, int count)
+{
+    static char *after_newline;
+    char *before_newline;
+    char *draft_line[BUFFER_SIZE];
+    
 
-       
+    // new_buff = ft_calloc(BUFFER_SIZE , sizeof(char));
+    // if (!new_uff)
+    //     return (NULL);
+   // memmove (draft_line, after_newline, BUFFER_SIZE);
+    ft_memmove(after_newline, draft_line, ft_strlen(after_newline));
+    if (ft_strchr(draft_line, '\n'))
+    {
+            ft_strlcat(draft_line, buff, BUFFER_SIZE);//copio il buff in una nuova stringa, se '\n' non viene trovato in buff viene scritta una nuova serie di BUFF_SIZE chars
+                                 
+                if (ft_strchr(draft_line, '\n'))//se non trovo il '\n' replico read e poi attacco il nuovo buff a draft_line
+                {    
+                    return(split_strings(draft_line, '\n', after_newline));
+                    
+                }
+                else
+                    count = read(fd, buff, BUFFER_SIZE);
+    }
+   free(new_buff);
+        return(NULL);   
+}
     
 
 
 char	*get_next_line(int fd)
 {
-    static char *buff;
+    char *buff;
    // char *draftline;
     //static char *string;
     size_t count;
@@ -86,7 +78,7 @@ char	*get_next_line(int fd)
     while (count > 0)
     {
         count = read (fd, buff, BUFFER_SIZE);
-        str = ft_get_line(fd, buff);
+        str = ft_get_line(fd, buff, count);
         if (count == 0)
             return(free(buff), NULL);
         return (str);
