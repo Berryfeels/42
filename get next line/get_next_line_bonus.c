@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:40:46 by stefanodipu       #+#    #+#             */
-/*   Updated: 2024/03/01 20:55:41 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/03/01 20:53:06 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_line_and_buff(int fd, char *line, char *buff)
 {
@@ -40,21 +40,21 @@ char	*get_line_and_buff(int fd, char *line, char *buff)
 
 char	*get_next_line(int fd)
 {
-	static char	buff[BUFFER_SIZE + 1];
+	static char	buff[FOPEN_MAX][BUFFER_SIZE + 1];
 	char		*line;
 
 	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd < 0)
 	{
-		emptybuff(buff);
+		emptybuff(buff[fd]);
 		line = NULL;
 		return (NULL);
 	}
 	line = NULL;
-	line = get_line_and_buff(fd, line, buff);
-	if (BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0 || fd < 0)
+	line = get_line_and_buff(fd, line, buff[fd]);
+	if (BUFFER_SIZE <= 0 || fd < 0)
 	{
-		emptybuff(buff);
-		line = NULL;
+		emptybuff(buff[fd]);
+		free(line);
 		return (NULL);
 	}
 	return (line);
@@ -64,34 +64,27 @@ char	*get_next_line(int fd)
 // #include <stdio.h>
 // int	main(void)
 // {
-// 	char	*str;
-// 	int		fd;
+// 	int		fd[3];
+// 	int	i = 0;
+// 	char *temp;
 
-// 	fd = open("file.txt", O_RDONLY);
-// 	if (fd == -1)
-// 	{
+// 	fd[0] =  open("file.txt", O_RDONLY);
+// 	if (fd[0] == -1)
 // 		return (1);
-// 	}
-// 	/*while (1)
+// 	fd[1] = -1;
+// 	fd[2] = open("file2.txt", O_RDONLY);
+// 	if (fd[0] == -1)
+// 		return (1);
+// 	while(1)
 // 	{
-// 		str = get_next_line(fd);
-// 		if (str == NULL)
+// 		temp = get_next_line (fd[i % 3]);
+// 		printf("line: %s\n", temp);
+// 		free(temp);
+// 		if (i == 10)
 // 			break ;
-
-// 		printf("- %s", str);
-// 		str = NULL;
-// 	}*/
-// 	str = get_next_line(fd);
-// 	while (1)
-// 	{
-// 		printf("%s", str);
-// 		free(str);
-// 		str = get_next_line(fd);
+// 		i++;
 // 	}
-// 	printf("%s", get_next_line(fd));
-// 	close(fd);
-// 	fd = open("file.txt", O_RDONLY);
-// 	printf("%s", get_next_line(fd));
-// 	close(fd);
+// 	close(fd[0]);
+// 	close(fd[2]);
 // 	return (0);
 // }

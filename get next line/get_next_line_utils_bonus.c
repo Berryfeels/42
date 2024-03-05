@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:37:37 by stefanodipu       #+#    #+#             */
-/*   Updated: 2024/03/01 19:32:29 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/03/01 20:50:41 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	emptybuff(char *buff)
 {
-	buff[0] = '\0';
+	if (buff)
+		buff[0] = '\0';
 }
 
 char	*write_sj(char *sj, char *s1, char *s2)
@@ -68,4 +69,24 @@ char	*ft_strjoin_get_next_line(char *s1, char *s2)
 		return (NULL);
 	sj = write_sj(sj, s1, s2);
 	return (sj);
+}
+
+char	*ft_strdup(const char *s)
+{
+	int		ls;
+	char	*ptr;
+	int		i;
+
+	ls = getlen ((char *)s);
+	ptr = (char *) malloc ((ls + 1) * sizeof(const char));
+	if (ptr == NULL)
+		return (NULL);
+	i = 0;
+	while (i < ls)
+	{
+		ptr[i] = s[i];
+		i ++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }
