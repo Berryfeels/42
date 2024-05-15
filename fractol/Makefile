@@ -1,5 +1,5 @@
 #Program name
-NAME	= fractal
+NAME	= fractol
 
 # Compilel
 CC		= cc
@@ -22,18 +22,18 @@ INC			=	-I ./include/\
 
 # Sources
 SRC_PATH	=	src/
-SRC			=	main.c \
+SRC		=		main.c \
 				hooks.c \
 				launch_window.c \
-				mandelbrot.c \
+				render.c \
 				math_utils.c \
-				define.c \
+				init_and_define.c \
 			
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
 # Objects
 OBJ_PATH	= src/obj/
-OBJ			= $(SRC:.c=.o)
+OBJ		= $(SRC:.c=.o)
 OBJS		= $(addprefix $(OBJ_PATH), $(OBJ))
 
 all: $(MLX) $(LIBFT) $(NAME)
@@ -57,19 +57,20 @@ $(LIBFT):
 $(NAME): $(OBJS)
 	@echo "Compiling fractol..."
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX) $(LIBFT) $(INC) -lXext -lX11 -lm -lz
-	@echo "Fractal ready."
+	@echo "Now use the keys to open the reveal to the Fractal."
 
 
+RM	= rm -f
 clean:
 	@echo "Removing .o object files..."
-	@rm -rf $(OBJ_PATH)
+	$(RM) $(OBJS)
 	@make clean -C $(MLX_PATH)
 	@make clean -C $(LIBFT_PATH)
 
 fclean: clean
 	@echo "Removing fractol..."
-	@rm -f $(NAME)
-	@rm -f $(LIBFT_PATH)$(LIBFT_NAME)
+	$(RM) $(NAME)
+	$(RM) $(LIBFT_PATH)$(LIBFT_NAME)
 
 re: fclean all
 
