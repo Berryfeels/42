@@ -1,0 +1,105 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/09/29 15:56:04 by stdi-pum          #+#    #+#              #
+#    Updated: 2024/09/30 20:45:15 by stdi-pum         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+NAME  = minishell
+
+# Compiler
+CC      = cc
+CFLAGS  = -g -Werror -Wextra -Wall
+
+# Libft
+LIBFT_PATH  = include/libft/
+LIBFT_NAME  = libft.a
+LIBFT       = $(LIBFT_PATH)$(LIBFT_NAME)
+
+# printf
+PRINTF_PATH = include/printf/
+PRINTF_NAME = libprintf.a
+PRINTF      = $(PRINTF_PATH)$(PRINTF_NAME)
+
+# dprintf
+DPRINTF_PATH = include/dprintf/
+DPRINTF_NAME = libdprintf.a
+DPRINTF      = $(DPRINTF_PATH)$(DPRINTF_NAME)
+
+# Includes
+INC         =   -I ./include/ \
+				-I $(LIBFT_PATH) \
+				-I $(PRINTF_PATH) \
+				-I $(DPRINTF_PATH) \
+
+# Source directories
+SRC_PATH    = src/
+
+# Source files
+SRC = main.c utils.c\
+
+# Object directories
+OBJ_PATH = src/obj
+
+# Rule to create object directories
+$(OBJ_PATH):
+	@echo "Creating object directories..."
+	@mkdir -p	$(OBJ_PATH)
+
+# Object files
+OBJS = $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
+
+# Rules
+all: $(LIBFT) $(PRINTF) $(DPRINTF) $(NAME)
+
+# Compile objects (make sure directory exists before)
+$(OBJ_PATH)/%.o: $(SRC_PATH)%.c | $(OBJ_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)  # Compile .c files into .o files
+
+# Build libft
+$(LIBFT):
+	@echo "Building libft..."
+	@make -C $(LIBFT_PATH)
+
+# Build printf
+$(PRINTF):
+	@echo "Building printf..."
+	@make -C $(PRINTF_PATH)
+
+# Build dprintf
+$(DPRINTF):
+	@echo "Building dprintf..."
+	@make -C $(DPRINTF_PATH)
+
+# Build executable
+$(NAME): $(OBJS)
+	@echo "Compiling $(NAME)..."
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_PATH) -lft -L$(PRINTF_PATH) -lprintf -L$(DPRINTF_PATH) -ldprintf -lreadline
+
+# Clean object files
+clean:
+	@echo "Removing .o object files..."
+	$(RM)  $(OBJS)
+	@make clean -C $(LIBFT_PATH)
+	@make clean -C $(PRINTF_PATH)
+	@make clean -C $(DPRINTF_PATH)
+# Clean everything including executables
+fclean: clean
+	@echo "Removing executables and libraries..."
+	$(RM) $(NAME)
+	$(RM) $(LIBFT)
+	$(RM) $(PRINTF)
+	$(RM) $(DPRINTF)
+	@rm -rf $(OBJ_PATH)
+
+# Rebuild everything
+re: fclean all
+
+.PHONY: all re clean fcleanc
+
