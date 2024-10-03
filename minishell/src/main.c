@@ -6,14 +6,24 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 17:01:45 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/10/01 18:58:16 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:11:32 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	main(int argc, char **env)
+void ft_openErrorScan(void)
 {
+	int fd;
+	
+	fd = open ("ErrorScan.txt", O_RDWR, O_CREAT, 0777);
+	if (fd == -1)
+		close (fd);
+		exit (EXIT_ERROR);
+}
+
+int	main()
+{	//int argc, char **argv, char **env
 	//maneggiare argv
 	//se cd non pipare
 	//fare subito
@@ -32,20 +42,22 @@ int	main(int argc, char **env)
 			break;
 		}
 	}
-	if (argc == 0)
-		ft_printf("ciola");//placeholder for bullshit
+	ft_openErrorScan;
+	// if (argc == 0)
+	// 	ft_printf("ciola");//placeholder for bullshit
+	// if (argv[1])	
+	// 	ft_printf("La vecchina patatina");
 	
 	while (1)
 	{	
 	
 
-		prompt = readline("Simon says> ");
+		prompt = readline("Mestepum> ");
 		if (prompt)
 		{
 			if(*prompt)
 			{
 				add_history(prompt);
-				ft_printf("The string prompt is: %s\n", prompt);//checker
 				if (prompt[0] == 'c' && prompt[1] == 'd' && prompt[2] == ' ')
 				{
 					buff = ft_substr(prompt, 3, strlen(prompt)); 
@@ -54,26 +66,19 @@ int	main(int argc, char **env)
 				}
 				if (prompt[0] == 'p' && prompt[1] == 'w' && prompt[2] == 'd')
 				{
-					char path [_PC_PATH_MAX];
-					char pwd[3] = "pwd";
-					//p1 = fork();
-					//if (p1 < 0)
-					//	return (2);
-					getcwd(path,_PC_PATH_MAX);
-					ft_printf("%s\n", path);
-					ft_dprintf("cacca ");
-					//if (p1 == 0)
-						execute(pwd, env);
-					//waitpid(p1, NULL, 0);
-					ft_dprintf("cacca");
-					
+				
+					char cwd[PATH_MAX];
+					if (getcwd(cwd, PATH_MAX) == NULL)
+     					 perror("getcwd() error");
+    				else
+      					printf("%s\n", cwd);	
 					
 				}
 				
 				if (strncmp(prompt, "exit", 4) == 0)//cancel after, placeholder to exit
 				{
-					free(prompt);
-					return 0;
+					ft_exit();
+		
 				}
 				free (prompt);
 			}
@@ -82,5 +87,6 @@ int	main(int argc, char **env)
 			break;
 		
 	}
+	close (fd);
 	return 0;
 }

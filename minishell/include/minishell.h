@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 15:49:08 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/09/30 20:11:19 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:50:20 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,29 @@
 # include <readline/history.h>
 # include <fcntl.h>
 # include <unistd.h>
-# include "dprintf/ft_dprintf.h"
+# include "../dprintf/ft_dprintf.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <sys/wait.h>
 # include <string.h>
-# include "libft/libft.h"
-# include "printf/ft_printf.h"
+# include "../libft/libft.h"
+# include "../printf/ft_printf.h"
+
+
+/******************************************************************************
+*								MACROS										  *
+******************************************************************************/
+
+# define EXIT_ERROR 1
+# define EXIT_SUCCESS 0
+# define PATH_MAX 4096
+
+/******************************************************************************
+*								TOKENS										  *
+******************************************************************************/
+//give a definition to the different tokens
+# define PIPE '|'
+# define 
 
 //DEFINE STRUCTURES
 
@@ -60,6 +76,24 @@ typedef struct s_redir
 	int		fd;
 	char	*cmd;
 }			t_redir;
+
+//prompt call
+// typedef struct s_call
+// {
+// 	char *promptstart;
+// 	char *promptend;
+// 	char 	;
+// 	end cmd;
+// 	typetoken;
+	
+// };
+
+//token struct
+
+typedef struct s_token
+{
+	char token;
+} t_token;
 
 //funtions
 int	execute(char *cmd, char **envp);

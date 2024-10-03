@@ -6,7 +6,7 @@
 #    By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/29 15:56:04 by stdi-pum          #+#    #+#              #
-#    Updated: 2024/09/30 20:45:15 by stdi-pum         ###   ########.fr        #
+#    Updated: 2024/10/03 11:44:21 by stdi-pum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,17 +18,17 @@ CC      = cc
 CFLAGS  = -g -Werror -Wextra -Wall
 
 # Libft
-LIBFT_PATH  = include/libft/
+LIBFT_PATH  = libft/
 LIBFT_NAME  = libft.a
 LIBFT       = $(LIBFT_PATH)$(LIBFT_NAME)
 
 # printf
-PRINTF_PATH = include/printf/
+PRINTF_PATH = printf/
 PRINTF_NAME = libprintf.a
 PRINTF      = $(PRINTF_PATH)$(PRINTF_NAME)
 
 # dprintf
-DPRINTF_PATH = include/dprintf/
+DPRINTF_PATH = dprintf/
 DPRINTF_NAME = libdprintf.a
 DPRINTF      = $(DPRINTF_PATH)$(DPRINTF_NAME)
 
