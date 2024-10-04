@@ -6,7 +6,7 @@
 #    By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/29 15:56:04 by stdi-pum          #+#    #+#              #
-#    Updated: 2024/10/03 11:44:21 by stdi-pum         ###   ########.fr        #
+#    Updated: 2024/10/04 15:56:39 by stdi-pum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,11 +41,15 @@ INC         =   -I ./include/ \
 # Source directories
 SRC_PATH    = src/
 
-# Source files
-SRC = main.c utils.c\
+# search for .c files in subfolders
+SRC = $(shell find $(SRC_PATH) -type f -name "*.c")
 
 # Object directories
 OBJ_PATH = src/obj
+
+# sets the folders for .o files mimiking the src path
+OBJS = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
+
 
 # Rule to create object directories
 $(OBJ_PATH):
@@ -53,14 +57,18 @@ $(OBJ_PATH):
 	@mkdir -p	$(OBJ_PATH)
 
 # Object files
-OBJS = $(addprefix $(OBJ_PATH)/, $(SRC:.c=.o))
+OBJS = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
+
 
 # Rules
 all: $(LIBFT) $(PRINTF) $(DPRINTF) $(NAME)
 
-# Compile objects (make sure directory exists before)
-$(OBJ_PATH)/%.o: $(SRC_PATH)%.c | $(OBJ_PATH)
-	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)  # Compile .c files into .o files
+# Create .o files
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c | $(OBJ_PATH)
+	@mkdir -p $(dir $@)
+	@echo "Compiling $< to $@"
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
+
 
 # Build libft
 $(LIBFT):
@@ -80,6 +88,7 @@ $(DPRINTF):
 # Build executable
 $(NAME): $(OBJS)
 	@echo "Compiling $(NAME)..."
+	@echo "What is your order, Master?"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIBFT_PATH) -lft -L$(PRINTF_PATH) -lprintf -L$(DPRINTF_PATH) -ldprintf -lreadline
 
 # Clean object files

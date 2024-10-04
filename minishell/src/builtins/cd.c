@@ -1,16 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 12:41:04 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/10/03 12:45:01 by stdi-pum         ###   ########.fr       */
+/*   Created: 2024/10/04 15:22:03 by stdi-pum          #+#    #+#             */
+/*   Updated: 2024/10/04 15:24:40 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int exit(t_exit, int exit_status_code)
+#include "../include/minishell.h"
+ 
+void ft_cd(char *buff, char *prompt)
 {
-	if exit previous
+	buff = ft_substr(prompt, 3, strlen(prompt)); 
+	chdir(buff);
+	free(buff);
 }

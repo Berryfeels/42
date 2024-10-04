@@ -6,7 +6,7 @@
 /*   By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 15:49:08 by stdi-pum          #+#    #+#             */
-/*   Updated: 2024/10/03 13:50:20 by stdi-pum         ###   ########.fr       */
+/*   Updated: 2024/10/04 15:25:14 by stdi-pum         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@
 ******************************************************************************/
 //give a definition to the different tokens
 # define PIPE '|'
-# define 
 
 //DEFINE STRUCTURES
 
@@ -97,5 +96,7 @@ typedef struct s_token
 
 //funtions
 int	execute(char *cmd, char **envp);
+void ft_pwd ();
+void ft_cd(char *buff, char *prompt);
 
 #endif
