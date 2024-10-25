@@ -6,7 +6,7 @@
 #    By: stdi-pum <stdi-pum@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/09 15:58:42 by stdi-pum          #+#    #+#              #
-#    Updated: 2024/10/11 13:15:27 by stdi-pum         ###   ########.fr        #
+#    Updated: 2024/10/22 18:37:39 by stdi-pum         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,11 @@ SRC = $(shell find $(SRC_PATH) -type f -name "*.c")
 #$(shell find $(SRC_PATH) -type f -name "*.c")
 
 # Object directories
-OBJ_PATH = src/obj
+OBJ_PATH = src/obj/
 
 # sets the folders for .o files mimiking the src path
-#OBJS = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
-OBJS = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
+OBJS = $(patsubst $(SRC_PATH)%.c, $(OBJ_PATH)%.o, $(SRC))
+#OBJS = $(addprefix $(OBJ_PATH), $(SRC:.c=.o))
 
 # Rule to create object directories
 $(OBJ_PATH):

@@ -8,8 +8,8 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/philo/philo",
-			"args": ["3", "100", "100", "100"],
+			"program": "/home/stdi-pum/Documents/C_PROJECTS/Philosopher/philo/philo",
+			"args": ["2", "800", "500", "200"],
 			"stopAtEntry": false,
 			"cwd": "/home/stdi-pum/Documents/C_PROJECTS/Philosopher/philo",
 			"environment": [],
@@ -28,6 +28,7 @@
 				}
 			]
 		}
+		
 
 	]
 }
